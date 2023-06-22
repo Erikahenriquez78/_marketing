@@ -1,0 +1,25 @@
+import pickle
+from pathlib import Path
+
+def read_pickle(file_path: str):
+    """
+    Read data from a Pickle file.
+
+    Args:
+        file_path (str): Path of the Pickle file.
+
+    Returns:
+        object: Data loaded from the Pickle file, or None if there is an error.
+    """
+    try:
+        with open(file_path, "rb") as f:
+            data = pickle.load(f)
+        print("Pickle file read: OK")
+        return data
+    except (FileNotFoundError, IOError, pickle.PickleError) as err:
+        print(f"Failed to read Pickle file {file_path}: {err}")
+        return None
+
+# Leer el modelo desde el archivo Pickle
+
+modelo = read_pickle("../models/mejor_modelo.pkl")
