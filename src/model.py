@@ -98,32 +98,38 @@ print("ROC AUC:", roc_auc)
 
 from imblearn.over_sampling import SMOTE
 from imblearn.under_sampling import TomekLinks
-from imblearn.pipeline import Pipeline
+# from imblearn.pipeline import Pipeline
 
-# Crear el pipeline con escalado de características, técnica de resampling y modelo de clasificación
-pipeline_smote_tomek = Pipeline([
-    ('scaler', StandardScaler()),
-    ('resampler', SMOTE(sampling_strategy='auto')),
-    ('undersampler', TomekLinks(sampling_strategy='majority')),
-    ('classifier', RandomForestClassifier())
-])
+# # Crear el pipeline con escalado de características, técnica de resampling y modelo de clasificación
+# pipeline_smote_tomek = Pipeline([
+#     ('scaler', StandardScaler()),
+#     ('resampler', SMOTE(sampling_strategy='auto')),
+#     ('undersampler', TomekLinks(sampling_strategy='majority')),
+#     ('classifier', RandomForestClassifier())
+# ])
 
-# Definir los parámetros del grid search
-param_grid_smote_tomek = {
-    'classifier__n_estimators': [50, 100, 200]
-}
+# # Definir los parámetros del grid search
+# param_grid_smote_tomek = {
+#     'classifier__n_estimators': [50, 100, 200]
+# }
 
-# Realizar la búsqueda de hiperparámetros utilizando GridSearchCV
-grid_search_smote_tomek = GridSearchCV(pipeline_smote_tomek, param_grid_smote_tomek, cv=5, scoring='accuracy')
-grid_search_smote_tomek.fit(X_train, y_train)
+# # Realizar la búsqueda de hiperparámetros utilizando GridSearchCV
+# grid_search_smote_tomek = GridSearchCV(pipeline_smote_tomek, param_grid_smote_tomek, cv=5, scoring='accuracy')
+# grid_search_smote_tomek.fit(X_train, y_train)
 
-# Obtener los resultados de la búsqueda de hiperparámetros
-best_model_smote_tomek = grid_search_smote_tomek.best_estimator_
-best_params_smote_tomek = grid_search_smote_tomek.best_params_
-best_score_smote_tomek = grid_search_smote_tomek.best_score_
+# # Obtener los resultados de la búsqueda de hiperparámetros
+# best_model_smote_tomek = grid_search_smote_tomek.best_estimator_
+# best_params_smote_tomek = grid_search_smote_tomek.best_params_
+# best_score_smote_tomek = grid_search_smote_tomek.best_score_
 
-# Imprimir los resultados
-print("Resultados de la búsqueda de hiperparámetros para SMOTE + TomekLinks:")
-print("Mejor modelo:", best_model_smote_tomek)
-print("Mejores parámetros:", best_params_smote_tomek)
-print("Mejor puntuación:", best_score_smote_tomek)
+# # Imprimir los resultados
+# print("Resultados de la búsqueda de hiperparámetros para SMOTE + TomekLinks:")
+# print("Mejor modelo:", best_model_smote_tomek)
+# print("Mejores parámetros:", best_params_smote_tomek)
+# print("Mejor puntuación:", best_score_smote_tomek)
+
+import pickle
+
+# Guardar el mejor modelo en un archivo pickle
+with open('mejor_modelo.pkl', 'wb') as file:
+    pickle.dump(best_model, file)
