@@ -1,9 +1,7 @@
-# _marketing
-Proyecto machine learning
 
 # Proyecto de Machine Learning: Vive una vida saludable
 
-![Vive una vida saludable](https://example.com/images/banner.png)
+![Vive una vida saludable](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.gundo.app%2Fblog%2F5-pasos-vida-saludable%2F&psig=AOvVaw1ltZsGSphfE_a6eWbuOnFC&ust=1687814276105000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCODpmqWs3_8CFQAAAAAdAAAAABAE)
 
 Este proyecto de Machine Learning, denominado "Vive una vida saludable", tiene como objetivo principal promover un estilo de vida saludable y equilibrado a través de la concienciación sobre una alimentación adecuada. El proyecto se centra en resaltar el valor de los productos relacionados con la salud, como frutas, productos de carne magra y pescado, y su contribución a una alimentación sana.
 
