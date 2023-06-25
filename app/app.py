@@ -7,7 +7,7 @@ warnings.filterwarnings("ignore")
 
 def realizar_prediccion(datos):
     # Cargar el modelo desde el archivo .pkl
-    modelo = joblib.load("_marketing/models/mejor_modelo.pkl")
+    modelo = joblib.load(r"C:\Users\de969\OneDrive\Escritorio\proyecto, machine learnig\_marketing\models\mejor_modelo.pkl")
 
     # Realizar la prediccion con los datos proporcionados
     datos = pd.DataFrame(datos, index=[0])
@@ -45,9 +45,13 @@ def main():
         resultado = realizar_prediccion(datos)
         st.subheader("Resultado:")
         st.write(resultado)
+        
+
 
 if __name__ == "__main__":
     main()
+
+
 
 
 

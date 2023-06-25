@@ -1,6 +1,5 @@
-
 import pandas as pd
-import seaborn as sns
+# import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
@@ -8,15 +7,20 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import roc_auc_score
 # from dataprep.eda import create_report
 from datetime import datetime
+import csv
+import os
 
-marketing = pd.read_csv('_marketing\\data\\raw\\marketing_campaign.csv', sep='\t')
+
+
+
+marketing = pd.read_csv('data/raw/marketing_campaign.csv', sep='\t')
 marketing
 
 # Función para calcular la edad actual
 def calculate_age(year):
-    current_year = datetime.now().year
-    age = current_year - year
-    return age
+           current_year = datetime.now().year
+           age = current_year - year
+           return age
 
 
 # Reemplazar la columna 'Year_Birth' por las edades correspondientes
@@ -54,4 +58,4 @@ median_income = marketing['Income'].median()
 marketing['Income'].fillna(median_income, inplace=True)
 print(marketing)
 
-#marketing.to_csv('marketing_limpio.csv',index= False)
+marketing.to_csv('app\marketing_limpio.csv',index= False)

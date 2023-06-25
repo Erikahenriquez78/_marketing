@@ -22,18 +22,18 @@ def read_pickle(file_path: str):
 
 # Leer el modelo desde el archivo Pickle
 
-import joblib
+# import joblib
 
 # Cargar el modelo desde el archivo .pkl
 # loaded_model = joblib.load('_marketing\models\mejor_modelo.pkl')
 
 
-modelo = read_pickle("_marketing\models\mejor_modelo.pkl")
+modelo = read_pickle("models\mejor_modelo.pkl")
 
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
 import pandas as pd
 from model import best_model
-test = pd.read_csv('_marketing\\data\\test.csv',sep='\t')
+test = pd.read_csv('data\\test.csv',sep='\t')
 median_income = test['Income'].median()
 test['Income'].fillna(median_income, inplace=True)
 
@@ -60,5 +60,5 @@ roc_auc = roc_auc_score(y, predictions)
 
 
 # Imprimir las predicciones
-# print(predictions)
+print(predictions)
 

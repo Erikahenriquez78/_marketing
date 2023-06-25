@@ -13,7 +13,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, classification_report, confusion_matrix
 
 # Cargar los datos
-data = pd.read_csv(r'_marketing\data\train.csv',sep='\t')
+data = pd.read_csv('data/train.csv',sep='\t')
 
 median_income = data['Income'].median()
 data['Income'].fillna(median_income, inplace=True)
@@ -97,8 +97,10 @@ print("F1-score:", f1)
 print("ROC AUC:", roc_auc)
 
 
+
+
 import pickle
 
 # Guardar el mejor modelo en un archivo pickle
-with open('mejor_modelo.pkl', 'wb') as file:
+with open('models\mejor_modelo.pkl', 'wb') as file:
     pickle.dump(best_model, file)
