@@ -11,76 +11,66 @@ from imblearn.combine import SMOTEENN
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, classification_report, confusion_matrix
+import pickle
+import os
 
-# Cargar los datos
-data = pd.read_csv('data/train.csv',sep='\t')
 
-median_income = data['Income'].median()
-data['Income'].fillna(median_income, inplace=True)
+# Obtener la ruta del directorio actual
+directorio_actual = os.getcwd()
 
-# Seleccionar las características y el objetivo
-features = ['Year_Birth', 'Income', 'Kidhome', 'Teenhome', 'Recency', 'MntWines',
+# Construir la ruta completa al archivo train.csv en la carpeta "data"
+ruta_train = os.path.join(directorio_actual, "data", "train.csv")
+
+# Leer el archivo CSV en un DataFrame
+data = pd.read_csv(ruta_train)
+
+
+# # with open('models\mejor_modelo.pkl', 'wb') as file:
+# #     pickle.dump(best_model, file)
+
+
+features = ['Year_Birth', 'Income', 'Recency', 'MntWines',
             'MntFruits', 'MntMeatProducts', 'MntFishProducts', 'MntSweetProducts',
             'MntGoldProds', 'NumDealsPurchases', 'NumWebPurchases',
             'NumCatalogPurchases', 'NumStorePurchases', 'NumWebVisitsMonth',
-            'Z_CostContact', 'Z_Revenue']  # Variables predictoras
+            'Z_Revenue']  # Variables predictoras
 target = 'Response'  # Variable objetivo
 
 # Dividir los datos en conjuntos de entrenamiento y prueba
-X_train, X_test, y_train, y_test = train_test_split(data[features], data[target], test_size=0.2, random_state=42)
+# X_train, X_test, y_train, y_test = train_test_split(data[features], data[target], test_size=0.2, random_state=42)
 
-# Aplicar resampling al conjunto de entrenamiento
-resampler = SMOTEENN(random_state=42)
-X_train_resampled, y_train_resampled = resampler.fit_resample(X_train, y_train)
+
+from imblearn.over_sampling import SMOTE
+
+
+# Aplicar SMOTE para oversampling
+oversampler = SMOTE(random_state=42)
+X_resampled, y_resampled = oversampler.fit_resample(data[features], data[target])
+
+# Crear un nuevo DataFrame con las características y el objetivo balanceados
+balanced_data = pd.DataFrame(X_resampled, columns=features)
+balanced_data[target] = y_resampled
+
+# Dividir los datos en conjuntos de entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(balanced_data[features], balanced_data[target], test_size=0.2, random_state=42)
+
 
 # Crear el pipeline con escalado de características y modelo de clasificación
 pipeline = Pipeline([
     ('scaler', StandardScaler()),
     ('classifier', None)
 ])
+# Obtener la ruta completa al archivo pickle en el directorio actual
+ruta_modelo = os.path.join(os.getcwd(), 'models','mejor_modelo1.pkl')
 
-# Definir los parámetros del grid search para cada modelo
-param_grid = [
-    {
-        'classifier': [LogisticRegression(solver='liblinear')],
-        'classifier__C': [0.1, 1, 10]
-    },
-    {
-        'classifier': [DecisionTreeClassifier()],
-        'classifier__max_depth': [8, 10, 15]
-    },
-    {
-        'classifier': [RandomForestClassifier()],
-        'classifier__n_estimators': [50, 100, 200]
-    },
-    {
-        'classifier': [SVC()],
-        'classifier__C': [0.1, 1, 10],
-        'classifier__kernel': ['linear', 'rbf']
-    },
-    {
-        'classifier': [KNeighborsClassifier()],
-        'classifier__n_neighbors': [3, 5, 7]
-    }
-]
+# Abrir el archivo pickle y cargar el modelo
+with open(ruta_modelo, 'rb') as file:
+    best_model = pickle.load(file)
 
-# Realizar la búsqueda de hiperparámetros utilizando GridSearchCV
-grid_search = GridSearchCV(pipeline, param_grid, cv=5, scoring='accuracy')
-grid_search.fit(X_train_resampled, y_train_resampled)
+# Entrenar el modelo con los datos de entrenamiento
+best_model.fit(X_train, y_train)
 
-# Obtener los resultados de la búsqueda de hiperparámetros
-results = grid_search.cv_results_
-best_model = grid_search.best_estimator_
-best_params = grid_search.best_params_
-best_score = grid_search.best_score_
-
-# Imprimir los resultados
-print("Resultados de la búsqueda de hiperparámetros:")
-print("Mejor modelo:", best_model)
-print("Mejores parámetros:", best_params)
-print("Mejor puntuación:", best_score)
-
-# Evaluar el mejor modelo en el conjunto de prueba
+# Evaluar el modelo en el conjunto de prueba
 y_pred = best_model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred)
@@ -98,9 +88,3 @@ print("ROC AUC:", roc_auc)
 
 
 
-
-import pickle
-
-# Guardar el mejor modelo en un archivo pickle
-with open('models\mejor_modelo.pkl', 'wb') as file:
-    pickle.dump(best_model, file)
