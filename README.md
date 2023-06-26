@@ -13,7 +13,7 @@ El proyecto consta de los siguientes componentes principales:
 
 1. **Análisis y preparación de datos**: Se realizará un análisis exploratorio de los datos recopilados, se limpiarán y prepararán para su posterior uso en el modelo de Machine Learning. También se llevará a cabo la selección y extracción de características relevantes para el modelo.
 
-2. **Desarrollo del modelo predictivo**: Se emplearán técnicas de Machine Learning, como clasificación o regresión, para desarrollar un modelo que pueda predecir la respuesta de los clientes ante la campaña de marketing. Se probarán diferentes algoritmos y se ajustarán los hiperparámetros para obtener el mejor rendimiento posible.
+2. **Desarrollo del modelo predictivo**: Se emplearán técnicas de Machine Learning, de clasificación, para desarrollar un modelo que pueda predecir la respuesta de los clientes ante la campaña de marketing. Se probarán diferentes algoritmos y se ajustarán los hiperparámetros para obtener el mejor rendimiento posible.
 
 3. **Evaluación y validación del modelo**: Se evaluará el desempeño del modelo utilizando métricas adecuadas, como precisión, recall o error cuadrático medio, según el tipo de problema. Se realizará una validación cruzada para asegurar que el modelo sea generalizable y no esté sobreajustado a los datos de entrenamiento.
 

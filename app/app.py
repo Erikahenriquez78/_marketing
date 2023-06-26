@@ -3,12 +3,38 @@ import joblib
 import pandas as pd
 import warnings
 
+import pickle
+from pathlib import Path
+
+def read_pickle(file_path: str):
+    """
+    Read data from a Pickle file.
+
+    Args:
+        file_path (str): Path of the Pickle file.
+
+    Returns:
+        object: Data loaded from the Pickle file, or None if there is an error.
+    """
+    try:
+        with open(file_path, "rb") as f:
+            data = pickle.load(f)
+        print("Pickle file read: OK")
+        return data
+    except (FileNotFoundError, IOError, pickle.PickleError) as err:
+        print(f"Failed to read Pickle file {file_path}: {err}")
+        return None
+
+# Leer el modelo desde el archivo Pickle
+
+modelo = read_pickle("../_marketing/models/mejor_modelo.pkl")
+
 warnings.filterwarnings("ignore")
 
 def realizar_prediccion(datos):
     # Cargar el modelo desde el archivo .pkl
-    modelo = joblib.load(r"C:\Users\de969\OneDrive\Escritorio\proyecto, machine learnig\_marketing\models\mejor_modelo.pkl")
-
+    # modelo = joblib.load("..//_marketing//models//mejor_modelo.csv")
+    modelo = read_pickle("../_marketing/models/mejor_modelo.pkl")
     # Realizar la prediccion con los datos proporcionados
     datos = pd.DataFrame(datos, index=[0])
     prediccion = modelo.predict(datos)

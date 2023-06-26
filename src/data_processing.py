@@ -10,10 +10,17 @@ from datetime import datetime
 import csv
 import os
 
+import os
+
+# Obtén la ruta absoluta del directorio actual
+directorio_actual = os.path.abspath(os.getcwd())
+
+# Construye la ruta completa al archivo 'marketing_campaign.csv'
+ruta_archivo = os.path.join(directorio_actual, r'C:\Users\de969\OneDrive\Escritorio\proyecto, machine learnig\_marketing\data\raw\marketing_campaign.csv')
 
 
 
-marketing = pd.read_csv('data/raw/marketing_campaign.csv', sep='\t')
+marketing = pd.read_csv(ruta_archivo, sep='\t')
 marketing
 
 # Función para calcular la edad actual
@@ -58,4 +65,17 @@ median_income = marketing['Income'].median()
 marketing['Income'].fillna(median_income, inplace=True)
 print(marketing)
 
-marketing.to_csv('app\marketing_limpio.csv',index= False)
+import os
+import pandas as pd
+
+directorio_actual = os.getcwd()
+directorio_destino = os.path.join(directorio_actual, "data")
+
+# Crear la ruta completa al archivo CSV
+ruta_archivo = os.path.join(directorio_destino, "marketing_limpio.csv")
+
+# Guardar el DataFrame en formato CSV en la ruta especificada
+marketing.to_csv(ruta_archivo, index=False)
+
+
+# marketing.to_csv('app\marketing_limpio.csv',index= False)
