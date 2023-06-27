@@ -31,5 +31,5 @@ El proyecto consta de los siguientes componentes principales:
 
 - `README.md`: Este archivo README proporciona una descripción general del proyecto, su objetivo, estructura del repositorio y cualquier otra información relevante.
 
--`src/`: Este directorio contiene los scripts de Python utilizados para la evaluación de los modelos. Estos scripts pueden incluir funciones para cargar los datos, entrenar los modelos, realizar predicciones y evaluar su rendimiento. Los nombres de los scripts deben ser descriptivos y reflejar su función específica en el proyecto.
+- `src/`: Este directorio contiene los scripts de Python utilizados para la evaluación de los modelos. Estos scripts pueden incluir funciones para cargar los datos, entrenar los modelos, realizar predicciones y evaluar su rendimiento. Los nombres de los scripts deben ser descriptivos y reflejar su función específica en el proyecto.
 

@@ -108,19 +108,18 @@ y_pred = best_model.predict(test_features)
 y_true = test['Response'].astype(int)
 # Imprimir las predicciones
 print(y_pred)
+
+
 accuracy = accuracy_score(y_true, y_pred)
-print("Precisión:", accuracy)
+precision = precision_score(y_true, y_pred)
+recall = recall_score(y_true, y_pred)
+f1 = f1_score(y_true, y_pred)
+roc_auc = roc_auc_score(y_true, y_pred)
 
-# accuracy = accuracy_score(test, y_pred)
-# precision = precision_score(test, y_pred)
-# recall = recall_score(test, y_pred)
-# f1 = f1_score(test, y_pred)
-# roc_auc = roc_auc_score(test, y_pred)
-
-# # Imprimir las métricas de evaluación
-# print("Métricas de evaluación en el conjunto de TEST:")
-# print("Accuracy:", accuracy)
-# print("Precision:", precision)
-# print("Recall:", recall)
-# print("F1-score:", f1)
-# print("ROC AUC:", roc_auc)
+# Imprimir las métricas de evaluación
+print("Métricas de evaluación en el conjunto de TEST:")
+print("Accuracy:", accuracy)
+print("Precision:", precision)
+print("Recall:", recall)
+print("F1-score:", f1)
+print("ROC AUC:", roc_auc)
