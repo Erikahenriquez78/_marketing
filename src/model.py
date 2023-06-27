@@ -13,6 +13,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, classification_report, confusion_matrix
 import pickle
 import os
+from imblearn.over_sampling import SMOTE
 
 
 # Obtener la ruta del directorio actual
@@ -25,50 +26,56 @@ ruta_train = os.path.join(directorio_actual, "data", "train.csv")
 data = pd.read_csv(ruta_train)
 
 
-# # with open('models\mejor_modelo.pkl', 'wb') as file:
-# #     pickle.dump(best_model, file)
 
-
-features = ['Year_Birth', 'Income', 'Recency', 'MntWines',
+x = ['Year_Birth', 'Income', 'Recency', 'MntWines',
             'MntFruits', 'MntMeatProducts', 'MntFishProducts', 'MntSweetProducts',
             'MntGoldProds', 'NumDealsPurchases', 'NumWebPurchases',
             'NumCatalogPurchases', 'NumStorePurchases', 'NumWebVisitsMonth',
-            'Z_Revenue']  # Variables predictoras
-target = 'Response'  # Variable objetivo
+            ]  # Variables predictoras
+y = 'Response'  # Variable objetivo
 
 # Dividir los datos en conjuntos de entrenamiento y prueba
-# X_train, X_test, y_train, y_test = train_test_split(data[features], data[target], test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(data[x], data[y], test_size=0.2, random_state=42)
 
 
-from imblearn.over_sampling import SMOTE
+
 
 
 # Aplicar SMOTE para oversampling
 oversampler = SMOTE(random_state=42)
-X_resampled, y_resampled = oversampler.fit_resample(data[features], data[target])
+X_resampled, y_resampled = oversampler.fit_resample(data[x], data[y])
 
 # Crear un nuevo DataFrame con las características y el objetivo balanceados
-balanced_data = pd.DataFrame(X_resampled, columns=features)
-balanced_data[target] = y_resampled
-
-# Dividir los datos en conjuntos de entrenamiento y prueba
-X_train, X_test, y_train, y_test = train_test_split(balanced_data[features], balanced_data[target], test_size=0.2, random_state=42)
+balanced_data = pd.DataFrame(X_resampled, columns=x)
+balanced_data[y] = y_resampled
 
 
 # Crear el pipeline con escalado de características y modelo de clasificación
 pipeline = Pipeline([
     ('scaler', StandardScaler()),
     ('classifier', None)
-])
-# Obtener la ruta completa al archivo pickle en el directorio actual
-ruta_modelo = os.path.join(os.getcwd(), 'models','mejor_modelo1.pkl')
+    
+    ])
 
-# Abrir el archivo pickle y cargar el modelo
-with open(ruta_modelo, 'rb') as file:
-    best_model = pickle.load(file)
+param_grid =[{
+        'classifier': [DecisionTreeClassifier()],
+        'classifier__max_depth': [8, 10, 15]
+    },
+        
+    {'classifier': [RandomForestClassifier()],
+        'classifier__n_estimators': [50, 100, 200]}]
+    
+              
+              
+grid_search = GridSearchCV(pipeline, param_grid, cv=5, scoring='accuracy')
+grid_search.fit(X_train, y_train)
 
-# Entrenar el modelo con los datos de entrenamiento
-best_model.fit(X_train, y_train)
+# Obtener los resultados de la búsqueda de hiperparámetros
+results = grid_search.cv_results_
+best_model = grid_search.best_estimator_
+best_params = grid_search.best_params_
+best_score = grid_search.best_score_
+
 
 # Evaluar el modelo en el conjunto de prueba
 y_pred = best_model.predict(X_test)
