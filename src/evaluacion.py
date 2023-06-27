@@ -107,46 +107,92 @@ test = pd.read_csv(ruta_archivo)
 # # Imprimir las predicciones
 # print(predictions)
 
+# import pandas as pd
+# from sklearn.preprocessing import StandardScaler
+# from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+# import pickle
+# from imblearn.over_sampling import SMOTE
+# from sklearn.pipeline import Pipeline
+
+
+# features = ['Year_Birth', 'Income', 'Recency', 'MntWines',
+#             'MntFruits', 'MntMeatProducts', 'MntFishProducts', 'MntSweetProducts',
+#             'MntGoldProds', 'NumDealsPurchases', 'NumWebPurchases',
+#             'NumCatalogPurchases', 'NumStorePurchases', 'NumWebVisitsMonth',
+#             'Z_Revenue']  # Variables predictoras
+# target = 'Response'  # Variable objetivo
+# from sklearn.model_selection import train_test_split
+# # Dividir los datos en conjuntos de entrenamiento y prueba
+# X = test[features]
+# y = test[target]
+# # Aplicar SMOTE para oversampling
+# oversampler = SMOTE(random_state=42)
+# X_resampled, y_resampled = oversampler.fit_resample(X, y)
+
+# # Crear un nuevo DataFrame con las características y el objetivo balanceados
+# balanced_data = pd.DataFrame(X_resampled, columns=features)
+# balanced_data[target] = y_resampled
+
+# # Dividir los datos en conjuntos de entrenamiento y prueba
+# # X_train, X_test, y_train, y_test = train_test_split(balanced_data[X], balanced_data[y], test_size=0.2, random_state=42)
+
+
+# # Crear el pipeline con escalado de características y modelo de clasificación
+# pipeline = Pipeline([
+#     ('scaler', StandardScaler()),
+#     ('classifier', None)
+# ])
+# # Obtener la ruta completa al archivo pickle en el directorio actual
+# ruta_modelo = os.path.join(os.getcwd(), 'models','mejor_modelo1.pkl')
+
+# # Abrir el archivo pickle y cargar el modelo
+# with open(ruta_modelo, 'rb') as file:
+#     best_model = pickle.load(file)
+# # predictions = ruta_modelo.predict(X)
+# # Evaluar el modelo en el conjunto de prueba
+# y_pred = best_model.predict(y_resampled)
+
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
 import pickle
 
+# Cargar los datos de prueba
+# test_data = pd.read_csv('ruta_del_archivo_de_prueba.csv')  # Reemplaza 'ruta_del_archivo_de_prueba.csv' con la ruta correcta
 
+# Obtener las características y el objetivo del conjunto de prueba
 features = ['Year_Birth', 'Income', 'Recency', 'MntWines',
             'MntFruits', 'MntMeatProducts', 'MntFishProducts', 'MntSweetProducts',
             'MntGoldProds', 'NumDealsPurchases', 'NumWebPurchases',
             'NumCatalogPurchases', 'NumStorePurchases', 'NumWebVisitsMonth',
             'Z_Revenue']  # Variables predictoras
 target = 'Response'  # Variable objetivo
-from sklearn.model_selection import train_test_split
-# Dividir los datos en conjuntos de entrenamiento y prueba
-X_train, X_test, y_train, y_test = train_test_split(data[features], data[target], test_size=0.2, random_state=42)
+X_test = test[features]
+y_test = test[target]
 
-# Aplicar SMOTE para oversampling
-oversampler = SMOTE(random_state=42)
-X_resampled, y_resampled = oversampler.fit_resample(data[features], data[target])
-
-# Crear un nuevo DataFrame con las características y el objetivo balanceados
-balanced_data = pd.DataFrame(X_resampled, columns=features)
-balanced_data[target] = y_resampled
-
-# Dividir los datos en conjuntos de entrenamiento y prueba
-X_train, X_test, y_train, y_test = train_test_split(balanced_data[features], balanced_data[target], test_size=0.2, random_state=42)
-
-
-# Crear el pipeline con escalado de características y modelo de clasificación
-pipeline = Pipeline([
-    ('scaler', StandardScaler()),
-    ('classifier', None)
-])
-# Obtener la ruta completa al archivo pickle en el directorio actual
-ruta_modelo = os.path.join(os.getcwd(), 'models','mejor_modelo1.pkl')
-
-# Abrir el archivo pickle y cargar el modelo
+ruta_modelo = os.path.join(os.getcwd(), 'models', 'mejor_modelo1.pkl')  # Reemplaza 'ruta_del_archivo_del_modelo.pkl' con la ruta correcta
 with open(ruta_modelo, 'rb') as file:
     best_model = pickle.load(file)
-predictions = modelo.predict(X)
-# Evaluar el modelo en el conjunto de prueba
+
+# Realizar las predicciones en los datos de prueba
 y_pred = best_model.predict(X_test)
+
+# Imprimir las predicciones
+print(y_pred)
+
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+roc_auc = roc_auc_score(y_test, y_pred)
+
+# Imprimir las métricas de evaluación
+print("Métricas de evaluación en el conjunto de prueba:")
+print("Accuracy:", accuracy)
+print("Precision:", precision)
+print("Recall:", recall)
+print("F1-score:", f1)
+print("ROC AUC:", roc_auc)
+
+
 
