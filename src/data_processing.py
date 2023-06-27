@@ -78,45 +78,45 @@ ruta_archivo = os.path.join(directorio_destino, "marketing_limpio.csv")
 marketing.to_csv(ruta_archivo, index=False)
 
 
-directorio_actual = os.getcwd()
-ruta_archivo = os.path.join(directorio_actual, "data", "marketing_limpio.csv")
+# directorio_actual = os.getcwd()
+# ruta_archivo = os.path.join(directorio_actual, "data", "marketing_limpio.csv")
 
-# Leer el archivo CSV
-data = pd.read_csv(ruta_archivo)
-
-
-print(data.head())
+# # Leer el archivo CSV
+# data = pd.read_csv(ruta_archivo)
 
 
+# print(data.head())
 
 
 
-data = data.sample(frac=1).reset_index(drop=False)
-
-# Definir la proporción de datos para entrenamiento y prueba
-train_ratio = 0.8
-test_ratio = 0.2
-
-# Calcular el tamaño de los conjuntos
-train_size = int(train_ratio * len(data))
-test_size = len(data) - train_size
-
-# Dividir los datos en conjuntos de entrenamiento y prueba
-train_data = data[:train_size]
-test_data = data[-test_size:]
 
 
-# Obtener la ruta del directorio actual
-directorio_actual = os.getcwd()
+# data = data.sample(frac=1).reset_index(drop=False)
 
-# Construir la ruta completa al archivo train.csv en la carpeta "data"
-ruta_train = os.path.join(directorio_actual, "data", "train.csv")
+# # Definir la proporción de datos para entrenamiento y prueba
+# train_ratio = 0.8
+# test_ratio = 0.2
 
-# Guardar el DataFrame train_data en el archivo CSV
-train_data.to_csv(ruta_train, index=False)
+# # Calcular el tamaño de los conjuntos
+# train_size = int(train_ratio * len(data))
+# test_size = len(data) - train_size
 
-# Construir la ruta completa al archivo test.csv en la carpeta "data"
-ruta_test = os.path.join(directorio_actual, "data", "test.csv")
+# # Dividir los datos en conjuntos de entrenamiento y prueba
+# train_data = data[:train_size]
+# test_data = data[-test_size:]
 
-# Guardar el DataFrame test_data en el archivo CSV
-test_data.to_csv(ruta_test, index=False)
+
+# # Obtener la ruta del directorio actual
+# directorio_actual = os.getcwd()
+
+# # Construir la ruta completa al archivo train.csv en la carpeta "data"
+# ruta_train = os.path.join(directorio_actual, "data", "train.csv")
+
+# # Guardar el DataFrame train_data en el archivo CSV
+# train_data.to_csv(ruta_train, index=False)
+
+# # Construir la ruta completa al archivo test.csv en la carpeta "data"
+# ruta_test = os.path.join(directorio_actual, "data", "test.csv")
+
+# # Guardar el DataFrame test_data en el archivo CSV
+# test_data.to_csv(ruta_test, index=False)
