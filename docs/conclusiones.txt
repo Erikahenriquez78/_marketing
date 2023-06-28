@@ -1,0 +1,30 @@
+Existe un interés significativo por parte de los clientes en adoptar un estilo de vida saludable y
+equilibrado. Esto se refleja en la participación en la campaña de 
+marketing centrada en productos saludables y en el gasto promedio realizado en dichos productos.
+
+La precisión del modelo de Machine Learning desarrollado en este proyecto es del 93.1%, lo que indica 
+que es capaz de predecir con alta exactitud la respuesta de los clientes ante la campaña de marketing. 
+Esto es crucial para enfocar los esfuerzos en aquellos clientes que tienen una mayor probabilidad de
+respuesta positiva.
+
+El valor de recall del modelo es del 75%, lo que indica que es capaz de identificar correctamente al 
+75% de los clientes que tendrían una respuesta positiva a la campaña de marketing. Esto es importante
+para asegurar que no se pierda la oportunidad de llegar a aquellos clientes que podrían estar
+interesados en los productos saludables
+
+F1-score del modelo es del 83.1%, lo que indica un buen equilibrio entre la precisión y el recall. 
+Esto significa que el modelo es capaz de encontrar un buen balance entre identificar correctamente a 
+los clientes que responderán positivamente a la campaña y evitar clasificar erróneamente a aquellos que
+no lo harán
+
+El área bajo la curva ROC (ROC AUC) del modelo es del 86.97%. Esta métrica es un indicador de la
+capacidad del modelo para distinguir entre respuestas positivas y negativas. Un valor alto de ROC AUC 
+sugiere que el modelo tiene un buen poder de discriminación y puede clasificar de manera efectiva a los
+clientes.
+
+Basándonos en las métricas de evaluación y los resultados obtenidos en este proyecto, podemos concluir
+que la campaña de marketing centrada en productos saludables tiene un alto potencial de éxito. 
+El modelo de Machine Learning desarrollado muestra una alta precisión y capacidad para identificar a
+los clientes con mayor probabilidad de respuesta positiva. Esto permite dirigir los esfuerzos de 
+marketing de manera efectiva y maximizar el impacto de la campaña en la promoción de un estilo de vida
+saludable.

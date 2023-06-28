@@ -14,30 +14,12 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 import pickle
 import os
 from imblearn.over_sampling import SMOTE
-import os
-import pandas as pd
-
-
-
 
 directorio_actual = os.getcwd()
 ruta_archivo = os.path.join(directorio_actual, "data", "marketing_limpio.csv")
 
 # Leer el archivo CSV
 data = pd.read_csv(ruta_archivo)
-
-
-
-
-# Obtener la ruta del directorio actual
-# directorio_actual = os.getcwd()
-
-# # Construir la ruta completa al archivo train.csv en la carpeta "data"
-# ruta_train = os.path.join(directorio_actual, "data", "train.csv")
-
-# # Leer el archivo CSV en un DataFrame
-# data = pd.read_csv(ruta_train)
-
 
 
 x = ['Year_Birth', 'Income', 'Recency', 'MntWines',
