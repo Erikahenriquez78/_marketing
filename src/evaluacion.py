@@ -9,30 +9,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
 
-# # Directorio actual
-# directorio_actual = os.getcwd()
 
-# # Ruta del archivo CSV de test
-# ruta_archivo = os.path.join(directorio_actual, 'data',"test.csv")
-
-# # Leer el archivo CSV
-# test = pd.read_csv(ruta_archivo)
-
-# # X = test.drop('Response')
-# # y = test['Response']
-
-# # oversampler = SMOTE(random_state=42)
-# # X_resampled, y_resampled = oversampler.fit_resample(test)
-
-# # # # Crear un nuevo DataFrame con las características y el objetivo balanceados
-# # balanced_data = pd.DataFrame(X_resampled, columns=test)
-# # balanced_data[test] = y_resampled
-
-# # Crear el pipeline con escalado de características y modelo de clasificación
-# # pipeline = Pipeline([
-# #     ('scaler', StandardScaler()),
-# #     ('classifier', None)
-# # ])
 
 
 

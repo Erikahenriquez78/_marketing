@@ -20,23 +20,23 @@ import pandas as pd
 
 
 
-# directorio_actual = os.getcwd()
-# ruta_archivo = os.path.join(directorio_actual, "data", "marketing_limpio.csv")
+directorio_actual = os.getcwd()
+ruta_archivo = os.path.join(directorio_actual, "data", "marketing_limpio.csv")
 
-# # Leer el archivo CSV
-# data = pd.read_csv(ruta_archivo)
+# Leer el archivo CSV
+data = pd.read_csv(ruta_archivo)
 
 
 
 
 # Obtener la ruta del directorio actual
-directorio_actual = os.getcwd()
+# directorio_actual = os.getcwd()
 
-# Construir la ruta completa al archivo train.csv en la carpeta "data"
-ruta_train = os.path.join(directorio_actual, "data", "train.csv")
+# # Construir la ruta completa al archivo train.csv en la carpeta "data"
+# ruta_train = os.path.join(directorio_actual, "data", "train.csv")
 
-# Leer el archivo CSV en un DataFrame
-data = pd.read_csv(ruta_train)
+# # Leer el archivo CSV en un DataFrame
+# data = pd.read_csv(ruta_train)
 
 
 
@@ -45,7 +45,7 @@ x = ['Year_Birth', 'Income', 'Recency', 'MntWines',
             'MntGoldProds', 'NumDealsPurchases', 'NumWebPurchases',
             'NumCatalogPurchases', 'NumStorePurchases', 'NumWebVisitsMonth',
             ]  # Variables predictoras
-y = 'Response'  # Variable objetivo
+y =  ['Response']  # Variable objetivo
 
 # Dividir los datos en conjuntos de entrenamiento y prueba
 X_train, X_test, y_train, y_test = train_test_split(data[x], data[y], test_size=0.2, random_state=10)
