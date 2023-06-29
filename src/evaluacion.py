@@ -27,13 +27,13 @@ features = ['Year_Birth', 'Income', 'Recency', 'MntWines', 'MntFruits', 'MntMeat
 # Filtrar las características en los datos de prueba
 test_features = test[features]
 
+
 # Cargar el modelo previamente entrenado desde el archivo pkl
 ruta_modelo = os.path.join(os.getcwd(), 'models', 'modelo1.pkl')
 with open(ruta_modelo, 'rb') as file:
     best_model = pickle.load(file)
 
 
-# Realizar las predicciones en los datos de prueba
 y_pred = best_model.predict(test_features)
 y_true = test['Response'].astype(int)
 # Imprimir las predicciones
