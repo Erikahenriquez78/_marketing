@@ -11,9 +11,15 @@ def realizar_prediccion(datos, modelo):
     # Realizar la predicción con los datos proporcionados
     datos = pd.DataFrame(datos, index=[0])
     prediccion = modelo.predict(datos)
+       # Devolver la frase personalizada según la predicción
+    if prediccion[0] == 0:
+        return "No participa en la campaña"
+    elif prediccion[0] == 1:
+        return "Sí participa en la campaña"
+    else:
+        return "No se puede determinar la participación"
 
-    # Devolver el resultado de la prediccion
-    print('Daria respuesta a nuestra campaña?')
+    
     return prediccion[0]
 
 def main():
