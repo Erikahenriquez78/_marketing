@@ -1,7 +1,7 @@
 
 # Proyecto de Machine Learning: Vive una vida saludable
 
-![Vive una vida saludable](https://www.gundo.app/blog/wp-content/uploads/2022/02/Estilos-de-vida-saludable-la-importancia-para-nuestra-salud-1-e1645630955761.jpeg)
+![Vive una vida saludable](https://th.bing.com/th/id/OIP.ToU1azjw8pykllnEZ8AzMgHaE8?rs=1&pid=ImgDetMain)
 
 Este proyecto de Machine Learning, denominado "Vive una vida saludable", tiene como objetivo principal promover un estilo de vida saludable y equilibrado a través de la concienciación sobre una alimentación adecuada. El proyecto se centra en resaltar el valor de los productos relacionados con la salud, como frutas, productos de carne magra y pescado, y su contribución a una alimentación sana.
 

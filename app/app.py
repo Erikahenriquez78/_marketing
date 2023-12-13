@@ -24,7 +24,7 @@ def realizar_prediccion(datos, modelo):
 
 def main():
     # Título de la aplicación
-    st.image("https://media.vozpopuli.com/2022/07/alimentos-saludables-incluir-dieta-diaria.jpg",width=800)
+    st.image("https://th.bing.com/th/id/OIP.ToU1azjw8pykllnEZ8AzMgHaE8?rs=1&pid=ImgDetMain",width=800)
     st.title("Aplicación de predicción")
     
   
@@ -58,6 +58,7 @@ def main():
     verduras = st.checkbox("Verduras")
     proteinas = st.checkbox("Proteínas")
     
+    
         
     modelo_path = r"C:\Users\de969\OneDrive\Escritorio\_marketing\models\modelo1.pkl"
     modelo = joblib.load(modelo_path)
@@ -71,7 +72,7 @@ def main():
         
 
 if __name__ == "__main__":
-    main()
+   main()
 
 
 
